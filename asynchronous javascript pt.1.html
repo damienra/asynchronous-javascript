@@ -1,0 +1,107 @@
+Practice Notes: Introduction to Asynchronous JavaScript
+(SUBMIT REPO LINK FROM GITHUB WITH NOTES OR PRACTICE CODE USED)
+
+Website: 
+
+[https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing)
+
+1. Asynchronous JavaScript:
+
+
+   - JavaScript is a single-threaded programming language, meaning it can only execute one operation at a time.
+   - Asynchronous programming allows JavaScript to handle multiple tasks concurrently without blocking the execution of other code.
+   - Asynchronous operations are typically used for tasks that involve waiting, such as fetching data from a server or reading a file.
+
+2. Callback Functions:
+   - Callback functions are a common way to handle asynchronous operations in JavaScript.
+   - A callback function is a function passed as an argument to another function and is executed when the asynchronous operation completes.
+   - Callback functions allow you to specify what should happen after an asynchronous task finishes.
+
+3. Promises:
+   - Promises provide an alternative approach to handling asynchronous operations.
+   - A promise is an object representing the eventual completion or failure of an asynchronous operation and its resulting value.
+   - Promises simplify asynchronous code by allowing you to chain multiple operations and handle success or failure in a more structured manner.
+
+4. `async` and `await`:
+   - `async` and `await` are features introduced in ECMAScript 2017 (ES8) that further simplify asynchronous programming.
+   - By marking a function as `async`, it enables the use of the `await` keyword inside that function.
+   - `await` can be used to pause the execution of an `async` function until a promise is resolved, allowing for a more synchronous-looking code flow.
+
+5. Error Handling:
+   - Proper error handling is crucial when working with asynchronous JavaScript.
+   - Promises allow you to attach `.catch()` handlers to handle errors that occur during the asynchronous operation.
+   - When using `async` and `await`, you can enclose the awaited promise inside a try-catch block to catch and handle any errors.
+
+6. Common Asynchronous Patterns:
+   - Common patterns in asynchronous JavaScript include callbacks, promises, and the `async/await` syntax.
+   - Understanding these patterns and when to use each one is essential for writing efficient and maintainable asynchronous code.
+
+7. Event Loop:
+   - The event loop is a crucial component of JavaScript's runtime that enables the execution of asynchronous operations.
+   - It continuously checks for tasks in the event queue and executes them in a non-blocking manner.
+   - Understanding how the event loop works helps you grasp the behavior of asynchronous JavaScript code.
+
+8. Asynchronous Browser APIs:
+   - Browsers provide several asynchronous APIs, such as `fetch` for making HTTP requests and the `setTimeout` and `setInterval` functions for scheduling code execution.
+   - These APIs allow you to perform common asynchronous tasks within a browser environment.
+
+Remember to explore the provided website for more detailed explanations, examples, and practice exercises to solidify your understanding of asynchronous JavaScript programming.
+
+1. Callback Function:
+
+function fetchData(callback) {
+  // Simulating an asynchronous operation
+  setTimeout(function() {
+    const data = { id: 1, name: 'John' };
+    callback(data);
+  }, 2000);
+}
+
+function processData(data) {
+  console.log('Data:', data);
+}
+
+fetchData(processData);
+
+
+
+2. Promise Example: 
+
+function fetchData() {
+  return new Promise(function(resolve, reject) {
+    // Simulating an asynchronous operation
+    setTimeout(function() {
+      const data = { id: 1, name: 'John' };
+      resolve(data);
+    }, 2000);
+  });
+}
+
+fetchData()
+  .then(function(data) {
+    console.log('Data:', data);
+  })
+  .catch(function(error) {
+    console.error('Error:', error);
+  });
+
+async and await Example:
+function fetchData() {
+  return new Promise(function(resolve, reject) {
+    // Simulating an asynchronous operation
+    setTimeout(function() {
+      const data = { id: 1, name: 'John' };
+      resolve(data);
+    }, 2000);
+  });
+}
+
+fetchData()
+  .then(function(data) {
+    console.log('Data:', data);
+  })
+  .catch(function(error) {
+    console.error('Error:', error);
+  });
+
+

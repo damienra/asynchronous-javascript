@@ -1,0 +1,85 @@
+Practice Notes: Introduction to Asynchronous JavaScript
+(SUBMIT REPO LINK FROM GITHUB WITH NOTES OR PRACTICE CODE USED)
+
+Website: 
+
+Website: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises
+Promises Overview:
+Promises are objects representing the eventual completion or failure of an asynchronous operation.
+They simplify handling asynchronous code and provide a more structured approach compared to callbacks.
+A promise can be in one of three states: pending, fulfilled, or rejected.
+Creating a Promise:
+Promises are created using the Promise constructor, which takes a function with two parameters: resolve and reject.
+Inside the function, you perform the asynchronous operation, and when it completes successfully, you call resolve with the result.
+If an error occurs, you call reject with the appropriate error object.
+
+const myPromise = new Promise(function(resolve, reject) {
+  // Perform asynchronous operation
+  // If successful, call resolve(result)
+  // If an error occurs, call reject(error)
+});
+
+3. Consuming Promises with .then():
+The .then() method is used to handle the fulfillment of a promise.
+It takes one or two callback functions as arguments: the first for success (resolve) and the second for failure (reject).
+You can chain multiple .then() calls to handle subsequent asynchronous operations.
+myPromise
+  .then(function(result) {
+    // Handle successful completion
+  })
+  .catch(function(error) {
+    // Handle error
+  });
+
+
+4. Chaining Promises:
+Promises can be chained by returning a new promise from within a .then() callback.
+This allows you to sequence multiple asynchronous operations.
+Each .then() in the chain can transform the result or perform additional asynchronous operations.
+
+
+myPromise
+  .then(function(result) {
+    // Perform additional operations
+    return anotherAsyncOperation(result);
+  })
+  .then(function(newResult) {
+    // Handle the new result
+  })
+  .catch(function(error) {
+    // Handle error
+  });
+
+
+5. Error Handling with .catch():
+The .catch() method is used to handle any errors that occur during the promise chain.
+It is typically placed at the end of the chain to catch any errors from previous promises.
+If any error occurs in the chain, the control jumps directly to the nearest .catch().
+
+
+6. Creating Resolved or Rejected Promises:
+You can create a resolved or rejected promise using the Promise.resolve() or Promise.reject() methods, respectively.
+This is useful when you need to immediately return a promise with a known value or error.
+
+
+const resolvedPromise = Promise.resolve('Result');
+
+
+const rejectedPromise = Promise.reject(new Error('Something went wrong'));
+
+
+Async/Await with Promises:
+The async and await keywords provide a more concise syntax for working with promises.
+async is used to define an asynchronous function, and await is used to pause the execution until a promise is resolved or rejected.
+This allows for a more synchronous-looking code structure.
+
+
+async function myAsyncFunction() {
+  try {
+    const result = await myPromise;
+    // Handle the result
+
+
+
+
+
