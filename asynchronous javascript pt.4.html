@@ -1,0 +1,55 @@
+Practice Notes: Introduction to Asynchronous JavaScript
+(SUBMIT REPO LINK FROM GITHUB WITH NOTES OR PRACTICE CODE USED)
+
+Website: 
+https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing_workers
+
+
+Introduction to Web Workers:
+Web Workers allow you to run JavaScript code in the background without blocking the main thread, enabling concurrent processing.
+Workers are separate execution contexts that can perform computationally intensive tasks, such as complex calculations or data processing.
+Creating a Worker:
+To create a web worker, create a new Worker object and provide the worker script file as an argument.
+const worker = new Worker('worker.js');
+
+3. Worker Script:
+The worker script is a separate JavaScript file that defines the code to be executed by the worker.
+Inside the worker script, you can listen for messages from the main thread using the onmessage event handler.
+
+// worker.js
+self.onmessage = function(event) {
+  // Handle message from main thread
+  const data = event.data;
+  // Perform some computations
+  const result = doComputations(data);
+  // Send result back to the main thread
+  self.postMessage(result);
+};
+
+4.Communicating with the Worker:
+You can send messages from the main thread to the worker using the postMessage() method and listen for responses using the onmessage event handler.
+// Sending message from the main thread
+worker.postMessage(data);
+
+// Listening for response in the main thread
+worker.onmessage = function(event) {
+  const result = event.data;
+  // Handle the result from the worker
+};
+
+5.Terminating a Worker:
+You can terminate a worker using the terminate() method. Terminated workers can't be restarted.
+worker.terminate();
+
+6. Error Handling:
+It's important to handle errors in web workers to prevent them from silently failing.
+Listen for the onerror event to handle errors that occur within the worker.
+worker.onerror = function(event) {
+  console.error('Error in worker:', event);
+};
+
+7. Limitations and Considerations:
+Web workers have some limitations, such as restricted access to the DOM and certain APIs.
+Communication with workers involves message passing and serialization of data.
+Worker scripts must be hosted on the same domain due to the same-origin policy.
+

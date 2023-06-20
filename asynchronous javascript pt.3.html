@@ -1,0 +1,100 @@
+Practice Notes: Introduction to Asynchronous JavaScript
+(SUBMIT REPO LINK FROM GITHUB WITH NOTES OR PRACTICE CODE USED)
+
+Website: 
+
+https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Implementing_a_promise-based_API
+
+Introduction to a Promise-based API:
+A promise-based API allows you to work with asynchronous operations using promises.
+Implementing a promise-based API involves creating functions that return promises to represent the eventual completion or failure of an asynchronous operation.
+Creating a Promise-based API:
+To create a function that returns a promise, use the Promise constructor and resolve or reject the promise based on the asynchronous operation's result.
+Inside the function, handle the asynchronous operation and call resolve(value) with the value when it completes successfully or call reject(error) if an error occurs.
+function fetchData() {
+  return new Promise(function(resolve, reject) {
+    // Asynchronous operation
+    if (/* operation successful */) {
+      resolve(result);
+    } else {
+      reject(error);
+    }
+  });
+}
+
+3. Consuming the Promise-based API:
+To consume the promise-based API, use .then() and .catch() methods to handle the resolved value or the rejected error, respectively.
+
+fetchData()
+  .then(function(result) {
+    // Handle successful completion
+  })
+  .catch(function(error) {
+    // Handle error
+  });
+
+4. Handling Multiple Promises:
+When dealing with multiple promises, you can use Promise.all() to wait for all promises to resolve and get an array of results.
+If any of the promises reject, the entire Promise.all() call will reject.
+
+Promise.all([promise1, promise2, promise3])
+  .then(function(results) {
+    // Handle results
+  })
+  .catch(function(error) {
+    // Handle error
+  });
+
+5. Handling Promises Sequentially:
+To handle promises sequentially, chain .then() calls and return a new promise from each .then() callback.
+
+promise1
+  .then(function(result1) {
+    // Handle result1
+    return promise2;
+  })
+  .then(function(result2) {
+    // Handle result2
+    return promise3;
+  })
+  .then(function(result3) {
+    // Handle result3
+  })
+  .catch(function(error) {
+    // Handle error
+  });
+
+
+
+
+
+
+
+
+
+
+
+6. Error Handling in Promise-based API:
+When implementing a promise-based API, ensure proper error handling by rejecting the promise with an appropriate error object.
+In the consuming code, use .catch() to handle the rejected promises and handle any errors.
+
+function fetchData() {
+  return new Promise(function(resolve, reject) {
+    // Asynchronous operation
+    if (/* operation successful */) {
+      resolve(result);
+    } else {
+      reject(new Error('Something went wrong'));
+    }
+  });
+}
+
+fetchData()
+  .then(function(result) {
+    // Handle successful completion
+  })
+  .catch(function(error) {
+    console.error(error);
+  });
+
+

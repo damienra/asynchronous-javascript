@@ -1,0 +1,70 @@
+Submit Repo Github LInk in Asignments section: with notes or practice code or programs done.
+
+
+Website: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Sequencing_animations
+
+
+Introduction to Sequencing Animations:
+Sequencing animations involves executing animations in a specific order, one after another.
+Asynchronous JavaScript techniques, such as promises and async/await, can be used to create smooth and coordinated animations.
+setTimeout():
+The setTimeout() function can be used to introduce delays between animations.
+It takes a callback function and a time duration in milliseconds as arguments.
+By chaining multiple setTimeout() calls, you can sequence animations with delays.
+setTimeout(function() {
+  // Animation 1
+}, 1000);
+
+setTimeout(function() {
+  // Animation 2
+}, 2000);
+
+3.Promises and Chaining:
+Promises provide a more structured and readable way to sequence animations.
+By returning promises from animation functions and chaining them using .then(), animations can be executed one after another.
+
+function animateElement(element, animation) {
+  return new Promise(function(resolve) {
+    // Perform animation on the element
+    // Call resolve() when animation is complete
+  });
+}
+
+animateElement(element1, animation1)
+  .then(function() {
+    return animateElement(element2, animation2);
+  })
+  .then(function() {
+    return animateElement(element3, animation3);
+  })
+  .then(function() {
+    // All animations completed
+  });
+
+4. async/await:
+The async and await keywords provide a more concise and synchronous-like way to sequence animations.
+By marking the function as async and using await before each animation function, animations can be executed sequentially.
+async function sequenceAnimations() {
+  await animateElement(element1, animation1);
+  await animateElement(element2, animation2);
+  await animateElement(element3, animation3);
+  // All animations completed
+}
+
+sequenceAnimations();
+
+5. Error Handling:
+When using promises or async/await for sequencing animations, ensure proper error handling.
+Use .catch() or try-catch blocks to catch and handle any errors that occur during animations.
+animateElement(element1, animation1)
+  .then(function() {
+    return animateElement(element2, animation2);
+  })
+  .then(function() {
+    return animateElement(element3, animation3);
+  })
+  .catch(function(error) {
+    // Handle error
+  });
+
+
